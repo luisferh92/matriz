@@ -1,0 +1,115 @@
+public class Matriz {
+	
+	public int tam;
+	
+	static int f=50;
+	static int c=50;
+	static int [][]numeros=new int[f][c];
+	static int [][]n_matriz=new int[f][c];
+	static int tamaño= 0;
+
+	public int getTam() {
+		return tam;
+	}
+
+	public void setTam(int tam) {
+		this.tam = tam;
+	}
+	
+	
+	
+	public int doStartTag(){
+		
+		JspWriter writer=pageContext.getOut();
+		
+		try{
+			
+			//writer.println("<br><br>imprimiendo del: "+d+" al "+c+" en orden inverso <br>");
+			tamaño=this.tam;
+			f=tamaño;
+			c=tamaño;
+			writer.println("===================================");
+			//System.out.println();
+			
+			int num=0;
+			for(int i=0;i<tamaño;i++){
+
+				for(int j=0;j<tamaño;j++){
+					num++;
+					numeros[i][j]=num;	
+			}	}
+			writer.println("<br>Matriz Original:<br>");
+			
+			for(int i=0;i<tamaño;i++){
+				writer.println("<br>");
+			
+			for(int j=0;j<tamaño;j++)
+				writer.print(numeros[i][j]+" ");
+		}
+			//=====================================================
+			
+		
+			writer.println();
+			writer.println("<br><br>Rotando matriz:..........<br>");
+			writer.println("===================================<br>");
+			
+			
+			for(int i=0;i<1;i++){  //de abajo a arriba
+				for(int j=0;j<tamaño;j++){
+					n_matriz[i][j]=numeros[tamaño-1][j];
+				}
+			}
+			int a=0,b=0;
+			for(int i=tamaño-1;i<tamaño;i++){  // de arriba a abajo
+				for(int j=0;j<tamaño;j++){
+					n_matriz[tamaño-1][j]=numeros[a][b];
+					b++;
+				}
+			}
+			
+			
+			for(int i=1;i<tamaño-1;i++){  //de derecha a izquierda
+				for(int j=0;j<1;j++){
+					n_matriz[i][j]=numeros[i][tamaño-1];
+				}
+			}
+			
+			
+			int c=1;
+			for(int i=1;i<tamaño-1;i++){  //de izquierda a derecha
+				for(int j=tamaño-1;j<tamaño;j++){
+					n_matriz[i][j]=numeros[c][0];
+					c++;
+				}
+			}//fin i-d
+			
+			
+			for(int i=1;i<tamaño-1;i++){  //central
+				for(int j=1;j<tamaño-1;j++){
+					n_matriz[i][j]=numeros[i][j];
+					
+				}
+			}//fin i-d
+			
+			
+			
+			
+			writer.println("<br><br>Matriz Transformada:  <br>  ");
+			
+			for(int i=0;i<tamaño;i++){
+				writer.println("<br>");
+				
+				for(int j=0;j<tamaño;j++)
+					writer.print(n_matriz[i][j]+" ");
+			}
+			
+			
+			
+		}catch(IOException e){
+			System.out.println(e.getMessage());
+		}
+		
+		return SKIP_BODY;
+	}
+
+}
