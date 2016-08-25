@@ -1,0 +1,114 @@
+import java.util.Scanner;
+
+public class matrizCalculator {
+
+	 
+	
+	static Scanner imput = new Scanner(System.in);
+
+	public int tam;
+	
+	static int f=50;
+	static int c=50;
+	static double [][]numeros=new double[f][c];
+	static double [][]matriz_div=new double[f][c];
+	static float sumVertical []= new float[f];
+	static float promedios []= new float[f];
+	static int tamaño= 0;
+
+ public static void main(String[] args) {
+	System.out.print ("tamaño:    ");
+	tamaño=imput.nextInt();
+	 doStartTag();
+}// fin main
+	
+
+	static public  void doStartTag(){
+
+		
+		
+
+		f=tamaño;
+		c=tamaño;
+		System.out.println("===================================");
+		
+		
+		for(int i=0;i<tamaño;i++){
+
+			for(int j=0;j<tamaño;j++){
+				numeros[i][j]=imput.nextFloat();	
+		}	}
+		System.out.println("Matriz Original:");
+		
+		for(int i=0;i<tamaño;i++){
+			System.out.println("");
+		
+		for(int j=0;j<tamaño;j++)
+
+		System.out.print(numeros[i][j]+" ");	
+		}
+		
+		
+
+		double suma=0;
+		for(int j=0;j<tamaño;j++){
+			System.out.println("");
+		
+		for(int i=0;i<tamaño;i++){
+
+		suma= numeros[i][j];
+		sumVertical[j]=(float) (sumVertical[j]+suma);
+		}	
+}
+		System.out.println("Suma de Columnas: ");
+		for(int k=0;k<tamaño;k++)
+		System.out.print(sumVertical[k]+" - ");
+		
+		//==========================Calculando Diviciones===========================
+		double resultado=0;
+		for(int i=0;i<tamaño;i++){
+			System.out.println();
+			for(int j=0;j<tamaño;j++){
+				resultado= numeros[j][i]/sumVertical[i];
+				matriz_div[j][i]=resultado;	//imput.nextInt()
+			}	
+		}
+		
+		System.out.println("Matriz de Divisiones:");
+		
+		for(int i=0;i<tamaño;i++){
+			System.out.println("");
+		
+			for(int j=0;j<tamaño;j++)
+			System.out.print(matriz_div[i][j]+" ");
+			
+		}
+		
+		//======Caldulando Promedios=======
+		
+		float sumProm=0;
+		for(int i=0;i<tamaño;i++){
+			for(int j=0;j<tamaño;j++){
+				sumProm=(float) (sumProm+matriz_div[i][j]);
+				
+				if((j+1==tamaño)){
+					promedios[i]=sumProm/tamaño;
+				}
+		}	
+			sumProm=0;
+		}
+		System.out.println(" \n\n\n  ------Promedios y porcentajes:");
+		
+		
+		for(int k=0;k<tamaño;k++){
+			System.out.println(promedios[k]+" - "+(promedios[k]*100)+"%");
+		}
+		
+		
+
+		
+	}// fin del metodo
+
+	
+	
+}
