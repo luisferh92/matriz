@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="myFirstApp">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+<script src="controller.js"></script>
+</head>
+<body ng-controller="firstController">
+
+<form ng-submit="putVaule()">
+
+<input type="text" id="size" ng-model="numInt.tam" >
+<input type="submit">
+{{numInt.tam}}
+</form>
+<table>
+  <tbody>
+    <!-- this was ok
+    <tr ng-repeat="numero in numArray track by $index">
+        <td ng-repeat="val in numero.valor track by $index">  <input type="text" value='{{val.num+""+$index}}'></input>  </td>
+    </tr>-->
+
+    <tr ng-repeat="numero in numArray ">
+        <td style=" width: 300px;" ng-repeat="val in numero.valores " >  <input style=" width: 300px;" type="text" value='{{val.num"  "+$index}}'></input>  </td>
+    </tr>
+
+  </tbody>
+
+</table>
+<ol>
+<li ng-repeat="a in fdatos" {{a.nombre}}>
+<li ng-repeat="a in fdatos" {{a.edad}}>
+</ol>
+
+
+</body>
+</html>
